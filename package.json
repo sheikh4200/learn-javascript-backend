@@ -1,0 +1,11 @@
+{
+  "name": "backend-professional-start-here",
+  "version": "1.0.0",
+  "description": "backend start here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M.Rizwan",
+  "license": "ISC"
+}
