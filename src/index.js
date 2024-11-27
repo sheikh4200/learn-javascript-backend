@@ -5,7 +5,20 @@ import connectDB from "./db/index.js"
 dotenv.config({
     path:"./env"
 })
+
 connectDB()
+.then(
+    app.on("ERROR",()=>{
+console.log("Error","faIleD to connecT")
+throw Error
+    }),
+    app.listen(process.env.PORT || 5000,()=>{
+console.log(`code is running on port: ${PORT}`)
+    })
+)
+.catch("ERROR",(err)=>{
+console.log('failed To cOnnect',err)
+})
 
 
 
