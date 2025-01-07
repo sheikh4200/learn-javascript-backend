@@ -1,9 +1,12 @@
-//we try both methods 
-//(1)Promises
-//using arrow function
-const asyncHandler = (requestHandler)=>{
-Promises.resolve(requestHandler(req,res,next)).catch((err)=> next(err))
-}
+const asyncHandler = (requestHandler) => {
+  return (req, res, next) => {
+    Promise.resolve(requestHandler(req, res, next)).catch((err) => {
+      next(err); // Pass the error to the next middleware
+    });
+  };
+};
+
+export { asyncHandler };
 
 
 
@@ -16,7 +19,8 @@ Promises.resolve(requestHandler(req,res,next)).catch((err)=> next(err))
 
 
 
-export {asyncHandler}
+
+
 
 //(2)try-catch
 //we use arrow function in this method

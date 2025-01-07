@@ -1,25 +1,52 @@
-import dotenv from "dotenv"
-import connectDB from "./db/index.js"
+// import dotenv from "dotenv"
+// import connectDB from "./db/index.js"
+// import { app } from "./app.js"
+
+// dotenv.config({
+//     path:"./.env"
+// })
+
+// connectDB()
+
+// .then(
+    
+//     app.on("error",(err)=>{
+// console.log("Error","faIleD to connecT",err)
+// throw Error
+//     }),
+
+//     app.listen( process.env.PORT|| 5000,()=>{
+// console.log(`code is running on port: ${process.env.PORT}`)
+//     })
+// )
+// .catch("ERROR",(err)=>{
+// console.log('failed To cOnnect',err)
+// })
 
 
+import dotenv from "dotenv";
+import connectDB from "./db/index.js";
+import { app } from "./app.js";
+
+// Load environment variables
 dotenv.config({
-    path:"./env"
-})
+    path: "./.env",
+});
+
+app.on("error", (err) => {
+  console.error("Error: Failed to connect", err);
+});
 
 connectDB()
-.then(
-    app.on("error",()=>{
-console.log("Error","faIleD to connecT")
-throw Error
-    }),
-    app.listen(process.env.PORT || 5000,()=>{
-console.log(`code is running on port: ${PORT}`)
-    })
-)
-.catch("ERROR",(err)=>{
-console.log('failed To cOnnect',err)
-})
-
+  .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+      console.log(`Code is running on port: ${process.env.PORT || 5000}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to the database", err);
+    process.exit(1); // Exit the process if the DB connection fails
+  });
 
 
 
